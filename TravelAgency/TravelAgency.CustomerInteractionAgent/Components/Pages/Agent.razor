@@ -1,0 +1,20 @@
+﻿@page "/"
+@rendermode InteractiveServer
+
+<PageTitle>Agent</PageTitle>
+
+<h1>Travel Agency Customer Interaction Agent</h1>
+
+<div>
+    <input type="text" @bind="NewEventText" placeholder="Enter new event" />
+    <button @onclick="AddEvent">Add Event</button>
+</div>
+<div id="scrollbox">
+    <ul>
+        @foreach (var eventItem in Events)
+        {
+            <li>@eventItem</li>
+        }
+    </ul>
+</div>
+

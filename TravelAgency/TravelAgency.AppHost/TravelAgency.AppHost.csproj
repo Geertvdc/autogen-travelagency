@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <IsAspireHost>true</IsAspireHost>
+        <UserSecretsId>42A28819-E19B-4A53-BFBF-DE29F00D3217</UserSecretsId>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Aspire.Hosting.AppHost" Version="8.2.1"/>
+        <PackageReference Include="Aspire.Hosting.Orleans" Version="8.2.1" />
+        <PackageReference Include="Aspire.Hosting.Qdrant" Version="8.2.1" />
+        <PackageReference Include="Microsoft.Orleans.Server" Version="8.2.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\TravelAgency.AgentHost\TravelAgency.AgentHost.csproj" />
+      <ProjectReference Include="..\TravelAgency.CustomerInteractionAgent\TravelAgency.CustomerInteractionAgent.csproj" />
+    </ItemGroup>
+
+</Project>
