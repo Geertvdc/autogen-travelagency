@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package travelagency;
+
+option csharp_namespace = "TravelAgency.Contracts.Messages";
+
+message UserMessage {
+  string user = 1;
+  string message = 2;
+}
+
+message TravelAdvice {
+  string location = 1;
+  string description = 2;
+}
