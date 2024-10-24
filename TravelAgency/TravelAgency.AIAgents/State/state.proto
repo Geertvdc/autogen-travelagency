@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package travelagency;
+
+option csharp_namespace = "TravelAgency.AIAgents.State";
+
+message TravelManagerState {
+  string ask = 1;
+  string outcome = 2;
+}

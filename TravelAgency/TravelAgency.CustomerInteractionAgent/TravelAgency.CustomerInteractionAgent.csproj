@@ -9,10 +9,11 @@
     <ItemGroup>
       <ProjectReference Include="..\..\..\autogen\dotnet\src\Microsoft.AutoGen\Agents\Microsoft.AutoGen.Agents.csproj" />
       <ProjectReference Include="..\..\..\autogen\dotnet\src\Microsoft.AutoGen\Extensions\SemanticKernel\Microsoft.AutoGen.Extensions.SemanticKernel.csproj" />
+      <ProjectReference Include="..\TravenAgency.Contracts\TravenAgency.Contracts.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Google.Protobuf" Version="3.28.2" />
+      <PackageReference Include="Google.Protobuf" Version="3.28.3" />
       <PackageReference Include="Grpc.Tools" Version="2.67.0">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -24,7 +25,6 @@
 
     <ItemGroup>
       <None Remove="Messages\messages.proto" />
-      <Protobuf Include="Messages\messages.proto" />
     </ItemGroup>
 
 </Project>

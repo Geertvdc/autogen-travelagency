@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.AutoGen.Abstractions;
 using Microsoft.AutoGen.Agents;
-using TravelAgency.Messages;
+using TravelAgency.Contracts.Messages;
 
 namespace TravelAgency.CustomerInteractionAgent.Components.Pages;
 
@@ -37,7 +37,7 @@ public partial class Agent: ComponentBase
         var message = new UserMessage { Message = NewEventText };
         
         var cloudevent = message.ToCloudEvent("CustomerInteractionAgentUI");
-        _client.PublishEventAsync(cloudevent);
+        await _client.PublishEventAsync(cloudevent);
         
         
         //Events.Add($"You: {NewEventText}");

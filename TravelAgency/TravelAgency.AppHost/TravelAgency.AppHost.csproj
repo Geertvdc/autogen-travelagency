@@ -18,6 +18,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\TravelAgency.AgentHost\TravelAgency.AgentHost.csproj" />
+      <ProjectReference Include="..\TravelAgency.AIAgents\TravelAgency.AIAgents.csproj" />
       <ProjectReference Include="..\TravelAgency.CustomerInteractionAgent\TravelAgency.CustomerInteractionAgent.csproj" />
     </ItemGroup>
 

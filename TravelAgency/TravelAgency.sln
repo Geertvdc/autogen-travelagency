@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelAgency.AgentHost", "T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelAgency.AIAgents", "TravelAgency.AIAgents\TravelAgency.AIAgents.csproj", "{F8407E22-0FF3-4FA8-A558-59FB469A9D78}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravenAgency.Contracts", "TravenAgency.Contracts\TravenAgency.Contracts.csproj", "{F0491947-6104-457A-8E18-8164BDCABDEF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,5 +68,9 @@ Global
 		{F8407E22-0FF3-4FA8-A558-59FB469A9D78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8407E22-0FF3-4FA8-A558-59FB469A9D78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8407E22-0FF3-4FA8-A558-59FB469A9D78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0491947-6104-457A-8E18-8164BDCABDEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0491947-6104-457A-8E18-8164BDCABDEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0491947-6104-457A-8E18-8164BDCABDEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0491947-6104-457A-8E18-8164BDCABDEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

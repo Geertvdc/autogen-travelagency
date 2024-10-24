@@ -4,8 +4,8 @@ using Microsoft.AutoGen.Abstractions;
 using Microsoft.AutoGen.Agents;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.Memory;
-using TravelAgency.Messages;
 using System.Threading.Tasks;
+using TravelAgency.Contracts.Messages;
 
 #pragma warning disable SKEXP0001
 
@@ -15,14 +15,14 @@ namespace TravelAgency.CustomerInteractionAgent.Agents
         IAgentContext context,
         [FromKeyedServices("EventTypes")] EventTypes typeRegistry,
         IHubContext<AgentHub> hubContext
-    ) : IOAgent<AgentState>(context, typeRegistry), IHandle<UserMessage>
+    ) : IOAgent<AgentState>(context, typeRegistry), IHandle<TravelAdvice>
     {
         private readonly IHubContext<AgentHub> _hubContext = hubContext;
         
-        public async Task Handle(UserMessage item)
+        public async Task Handle(TravelAdvice item)
         {
             // Handle the message and send it to the client via SignalR
-            await _hubContext.Clients.All.SendAsync("ReceiveMessage", "Agent", item.Message);
+            await _hubContext.Clients.All.SendAsync("ReceiveMessage", "Agent", item.Description);
         }
 
         public override Task<string> ProcessInput(string message)
