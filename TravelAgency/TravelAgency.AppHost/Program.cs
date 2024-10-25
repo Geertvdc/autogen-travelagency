@@ -14,14 +14,17 @@ var agentHost = builder.AddProject<Projects.TravelAgency_AgentHost>("agenthost")
  var agentHostHttps = agentHost.GetEndpoint("https");
 
  builder.AddProject<Projects.TravelAgency_CustomerInteractionAgent>("customer-interaction-agent")
-     .WithEnvironment("AGENT_HOST", $"{agentHostHttps.Property(EndpointProperty.Url)}");
-
- builder.AddProject<Projects.TravelAgency_AIAgents>("ai-agents")
      .WithEnvironment("AGENT_HOST", $"{agentHostHttps.Property(EndpointProperty.Url)}")
      .WithEnvironment("Qdrant__Endpoint", $"{qdrant.Resource.HttpEndpoint.Property(EndpointProperty.Url)}")
      .WithEnvironment("Qdrant__ApiKey", $"{qdrant.Resource.ApiKeyParameter.Value}")
-     .WithEnvironment("Qdrant__VectorSize", "1536")
+     .WithEnvironment("Qdrant__VectorSize", "1536");
+
+ builder.AddProject<Projects.TravelAgency_AIAgents>("ai-agents")
+     .WithEnvironment("AGENT_HOST", $"{agentHostHttps.Property(EndpointProperty.Url)}")
      .WithEnvironment("OpenAI__Key", builder.Configuration["OpenAI:Key"])
-     .WithEnvironment("OpenAI__Endpoint", builder.Configuration["OpenAI:Endpoint"]);
+     .WithEnvironment("OpenAI__Endpoint", builder.Configuration["OpenAI:Endpoint"])
+     .WithEnvironment("Qdrant__Endpoint", $"{qdrant.Resource.HttpEndpoint.Property(EndpointProperty.Url)}")
+     .WithEnvironment("Qdrant__ApiKey", $"{qdrant.Resource.ApiKeyParameter.Value}")
+     .WithEnvironment("Qdrant__VectorSize", "1536");
 
 builder.Build().Run();

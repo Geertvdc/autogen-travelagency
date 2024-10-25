@@ -10,7 +10,6 @@ namespace TravelAgency.AIAgents.TravelManager;
 #pragma warning disable SKEXP0001
 
 [TopicSubscription("travelagency")]
-
 public class TravelManager(IAgentContext context, Kernel kernel, ISemanticTextMemory memory, [FromKeyedServices("EventTypes")] EventTypes typeRegistry, ILogger<TravelManager> logger)
 #pragma warning restore SKEXP0001
     : AiAgent<TravelManagerState>(context, memory, kernel, typeRegistry),
@@ -31,8 +30,8 @@ public class TravelManager(IAgentContext context, Kernel kernel, ISemanticTextMe
         try
         {
             var context = new KernelArguments { ["input"] = AppendChatHistory(ask) };
-            //var instruction = "Consider the following architectural guidelines:!waf!";
-            //var enhancedContext = await AddKnowledge(instruction, "waf", context);
+            // var instruction = "Consider the following architectural guidelines:!waf!";
+            // var enhancedContext = await AddKnowledge(instruction, "waf", context);
             return await CallFunction(TravelManagerSkills.CreateHolidayAdvice, context);
         }
         catch (Exception ex)
