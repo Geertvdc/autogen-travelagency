@@ -30,8 +30,6 @@ public class TravelManager(IAgentContext context, Kernel kernel, ISemanticTextMe
         try
         {
             var context = new KernelArguments { ["input"] = AppendChatHistory(ask) };
-            // var instruction = "Consider the following architectural guidelines:!waf!";
-            // var enhancedContext = await AddKnowledge(instruction, "waf", context);
             return await CallFunction(TravelManagerSkills.CreateHolidayAdvice, context);
         }
         catch (Exception ex)
