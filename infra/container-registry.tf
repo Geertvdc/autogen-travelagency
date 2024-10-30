@@ -33,13 +33,13 @@ resource "azurerm_private_endpoint" "acr_pep" {
   }
 }
 
-resource "azurerm_private_dns_a_record" "pep_registry_a_record" {
-  count               = length(azurerm_private_endpoint.acr_pep.custom_dns_configs)
-  name                = lower(replace(azurerm_private_endpoint.acr_pep.custom_dns_configs[count.index].fqdn, ".azurecr.io", ""))
-  zone_name           = "privatelink.azurecr.io"
-  resource_group_name = azurerm_resource_group.data_rg.name
-  ttl                 = 3600
-  records             = azurerm_private_endpoint.acr_pep.custom_dns_configs[count.index].ip_addresses
+# resource "azurerm_private_dns_a_record" "pep_registry_a_record" {
+#   count               = length(azurerm_private_endpoint.acr_pep.custom_dns_configs)
+#   name                = lower(replace(azurerm_private_endpoint.acr_pep.custom_dns_configs[count.index].fqdn, ".azurecr.io", ""))
+#   zone_name           = "privatelink.azurecr.io"
+#   resource_group_name = azurerm_resource_group.data_rg.name
+#   ttl                 = 3600
+#   records             = azurerm_private_endpoint.acr_pep.custom_dns_configs[count.index].ip_addresses
 
-  provider = azurerm.private-dns-subscription
-}
+#   provider = azurerm.private-dns-subscription
+# }

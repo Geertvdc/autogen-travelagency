@@ -4,6 +4,7 @@ resource "azurerm_cognitive_account" "main" {
   location            = azurerm_resource_group.data_rg.location
   kind                = "OpenAI"
   sku_name            = "S0"
+  public_network_access_enabled = false
 }
 
 resource "azurerm_cognitive_deployment" "gpt4o" {
@@ -35,13 +36,13 @@ resource "azurerm_private_endpoint" "cognitive_account_pep" {
   }
 }
 
-resource "azurerm_private_dns_a_record" "pep_cognitive_a_record" {
-  count               = length(azurerm_private_endpoint.cognitive_account_pep.custom_dns_configs)
-  name                = lower(replace(azurerm_private_endpoint.cognitive_account_pep.custom_dns_configs[count.index].fqdn, ".cognitiveservices.azure.com", ""))
-  zone_name           = "privatelink.cognitiveservices.azure.com"
-  resource_group_name = azurerm_resource_group.data_rg.name
-  ttl                 = 3600
-  records             = azurerm_private_endpoint.cognitive_account_pep.custom_dns_configs[count.index].ip_addresses
+# resource "azurerm_private_dns_a_record" "pep_cognitive_a_record" {
+#   count               = length(azurerm_private_endpoint.cognitive_account_pep.custom_dns_configs)
+#   name                = lower(replace(azurerm_private_endpoint.cognitive_account_pep.custom_dns_configs[count.index].fqdn, "privatelink.openai.azure.com", ""))
+#   zone_name           = "privatelink.openai.azure.com"
+#   resource_group_name = azurerm_resource_group.data_rg.name
+#   ttl                 = 3600
+#   records             = azurerm_private_endpoint.cognitive_account_pep.custom_dns_configs[count.index].ip_addresses
 
-  provider = azurerm.private-dns-subscription
-}
+#   provider = azurerm.private-dns-subscription
+# }
