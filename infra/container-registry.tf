@@ -33,7 +33,7 @@ resource "azurerm_private_endpoint" "acr_pep" {
   }
 }
 
-resource "azurerm_private_dns_a_record" "pep_a_record_registry" {
+resource "azurerm_private_dns_a_record" "pep_registry_a_record" {
   count               = length(azurerm_private_endpoint.acr_pep.custom_dns_configs)
   name                = lower(replace(azurerm_private_endpoint.acr_pep.custom_dns_configs[count.index].fqdn, ".azurecr.io", ""))
   zone_name           = "privatelink.azurecr.io"
