@@ -14,7 +14,7 @@ variable "environment" {
   default     = "dev"
 
   validation {
-    condition     = contains(["dev", "acc", "prd"], var.api_environment_name)
+    condition     = contains(["dev", "acc", "prd"], var.environment)
     error_message = "The name must be either 'dev', 'acc' or 'prd'."
   }
 }

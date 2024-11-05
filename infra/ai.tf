@@ -1,15 +1,17 @@
 resource "azurerm_cognitive_account" "main" {
-  name                = "${project_name}-${var.environment}-cognitive"
+  name                = "${local.project_name}-${var.environment}-cognitive"
   resource_group_name = azurerm_resource_group.data_rg.name
   location            = azurerm_resource_group.data_rg.location
   kind                = "OpenAI"
   sku_name            = "S0"
   public_network_access_enabled = false
+
+  custom_subdomain_name = "${local.project_name}-${var.environment}"
 }
 
 resource "azurerm_cognitive_deployment" "gpt4o" {
-  name                 = "${project_name}-${var.environment}-cd"
-  cognitive_account_id = azurerm_cognitive_account.example.id
+  name                 = "${local.project_name}-${var.environment}-cd"
+  cognitive_account_id = azurerm_cognitive_account.main.id
   model {
     format  = "OpenAI"
     name    = "gpt-4o"
@@ -23,17 +25,22 @@ resource "azurerm_cognitive_deployment" "gpt4o" {
 }
 
 resource "azurerm_private_endpoint" "cognitive_account_pep" {
-  name                = "${project_name}-${var.environment}-cognitive-pep"
+
+  name                = "${local.project_name}-${var.environment}-cognitive-pep"
   resource_group_name = azurerm_resource_group.data_rg.name
   location            = azurerm_resource_group.data_rg.location
   subnet_id           = var.data_subnet_id
 
   private_service_connection {
-    name                           = "${project_name}-${var.environment}-cognitive-pep-psc"
+    name                           = "${local.project_name}-${var.environment}-cognitive-pep-psc"
     private_connection_resource_id = azurerm_cognitive_account.main.id
     is_manual_connection           = false
     subresource_names              = ["account"]
   }
+
+  depends_on = [
+    azurerm_cognitive_account.main
+  ]
 }
 
 # resource "azurerm_private_dns_a_record" "pep_cognitive_a_record" {

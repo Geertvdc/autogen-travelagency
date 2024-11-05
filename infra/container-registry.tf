@@ -4,7 +4,7 @@ resource "azurerm_container_registry" "acr" {
 
   anonymous_pull_enabled        = false
   public_network_access_enabled = false
-  name                          = "${local.project_name}-${var.environment}-acr"
+  name                          = "${replace(local.project_name, "-", "")}${var.environment}cr"
   sku                           = "Premium" #needed for private endpoints
   admin_enabled                 = false
 
